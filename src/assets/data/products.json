@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Samsung Galaxy S10 Plus",
+        "price": 1000,
+        "image": "assets/images/store/s10plus.jpg"
+    },
+    {
+        "name": "Huawei P30 Pro",
+        "price": 950,
+        "image": "assets/images/store/p30pro.jpg"
+    }
+]
