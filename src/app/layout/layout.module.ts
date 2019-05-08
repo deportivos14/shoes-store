@@ -7,8 +7,18 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent, SidenavDirective],
-  imports: [CommonModule, RouterModule],
-  exports: [NavbarComponent, FooterComponent]
+  declarations: [
+    NavbarComponent, 
+    FooterComponent, 
+    SidenavDirective
+  ],
+  imports: [
+    CommonModule, 
+    RouterModule
+  ],
+  exports: [
+    NavbarComponent, 
+    FooterComponent
+  ]
 })
 export class LayoutModule {}

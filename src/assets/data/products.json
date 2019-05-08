@@ -2,11 +2,37 @@
     {
         "name": "Samsung Galaxy S10 Plus",
         "price": 1000,
+        "discount_price": 500,
+        "image": "assets/images/store/s10plus.jpg"
+    },
+    {
+        "name": "Samsung Galaxy S10 Plus",
+        "price": 1000,
+        "discount_price": 400,
         "image": "assets/images/store/s10plus.jpg"
     },
     {
         "name": "Huawei P30 Pro",
         "price": 950,
+        "discount_price": 600,
         "image": "assets/images/store/p30pro.jpg"
+    },
+    {
+        "name": "Huawei P30 Pro",
+        "price": 950,
+        "discount_price": 700,
+        "image": "assets/images/store/p30pro.jpg"
+    },
+    {
+        "name": "Huawei P30 Pro",
+        "price": 950,
+        "discount_price": 800,
+        "image": "assets/images/store/p30pro.jpg"
+    },
+    {
+        "name": "Samsung Galaxy S10 Plus",
+        "price": 1000,
+        "discount_price": 850,
+        "image": "assets/images/store/s10plus.jpg"
     }
 ]
