@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { ProductsService } from './products.service';
-import { Product } from '../shared/models/product';
+import { Product } from '../models/product';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'iso-store',
@@ -13,7 +13,7 @@ import { Product } from '../shared/models/product';
 export class StoreComponent implements OnInit {
   products$: Observable<Product[]>;
 
-  constructor(private productsService: ProductsService) {}
+  constructor(private productsService: ProductService) {}
 
   ngOnInit(): void {
     this.products$ = this.productsService.getProducts();

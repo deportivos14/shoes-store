@@ -4,11 +4,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { StoreRoutingModule } from './store-routing.module';
 import { StoreComponent } from './store.component';
-import { ProductsService } from './products.service';
+import { ProductService } from './../services/product.service';
 
 @NgModule({
   declarations: [StoreComponent],
   imports: [CommonModule, HttpClientModule, StoreRoutingModule],
-  providers: [ProductsService]
+  providers: [ProductService]
 })
 export class StoreModule {}
