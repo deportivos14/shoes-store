@@ -1,11 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { Product } from "../../models/product";
 
 @Component({
-  selector: 'iso-app-product-card',
-  templateUrl: './app-product-card.component.html',
-  styleUrls: ['./app-product-card.component.css']
+  selector: 'app-product-card',
+  templateUrl: './product-card.component.html',
+  styleUrls: ['./product-card.component.css']
 })
 export class AppProductCardComponent implements OnInit {
+
+  @Input() product: Product;
+  @Input() id: number;
+
+  //@Output() productSelected: EventEmitter<number>;
 
   constructor() { }
 
