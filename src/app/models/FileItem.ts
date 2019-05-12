@@ -3,13 +3,13 @@ export class FileItem {
     public nameFile: string;
     public url: string;
     public uploading: boolean;
-    public proggres: number;
+    public progres: number;
 
     constructor( file: File ){
         this.file = file;
         this.nameFile = file.name;
         
         this.uploading = false;
-        this.proggres = 0;
+        this.progres = 0;
     }
 }

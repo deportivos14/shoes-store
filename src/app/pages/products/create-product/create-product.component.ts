@@ -29,6 +29,7 @@ export class CreateProductComponent implements OnInit {
   constructor(private productServ: ProductService ) { }
 
   ngOnInit() {
+    console.log(this.files)
   }
 
   saveData(dataForm){

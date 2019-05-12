@@ -43,7 +43,6 @@ export class NgDropFilesDirective {
   }
 
   private fileExtract( fileList: FileList) {
-    console.log(fileList);
     for (const property in Object.getOwnPropertyNames( fileList ) ) {
       const fileTemp = fileList[property];
       
@@ -70,8 +69,8 @@ export class NgDropFilesDirective {
   }
 
   private fileDropped( name:string ): boolean {
-    for (const file in this.files) {
-      if (file.name == name) {
+    for (const file of this.files) {
+      if ( file.nameFile === name ) {
         console.log('ya existe');
         return true;
       }
