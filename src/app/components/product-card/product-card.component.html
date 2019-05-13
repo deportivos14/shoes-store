@@ -1,7 +1,7 @@
 <div class="card border-success">
   <div class="card-header">{{ product.name }}</div>
   <div class="card-body">
-    <img class="card-img-top" [src]="product.image" [alt]="product.name">
+    <img class="card-img-top" [src]="this.profileUrl | async" [alt]="product.name">
     <h5 class="card-title text-primary text-center mt-4">{{ product.name }}</h5>
     <ul class="list-unstyled">
         <li><i class="fas fa-check"></i> Android v4.4.2 (KitKat)</li>
@@ -13,7 +13,7 @@
     </ul>
   </div>
   <div class="card-footer text-primary">
-    <h4 class="text-primary text-center">{{ product.price | currency }} <del class="text-danger">{{ product.discount_price | currency }}</del> </h4>
+    <h4 class="text-primary text-center">{{ product.discount_price | currency }} <del class="text-danger">{{ product.price | currency }}</del> </h4>
     <a class="btn btn-outline-primary btn-block">View</a>
   </div>
 </div>

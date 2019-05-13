@@ -1,4 +1,5 @@
 export interface Product {
+  id: string;
   name: string;
   price: number;
   discount_price: number;
@@ -8,5 +9,5 @@ export interface Product {
   description: string;
   size: string;
   sex: string;
-  published: number;
+  published: boolean;
 }

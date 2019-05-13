@@ -43,19 +43,17 @@ export class NgDropFilesDirective {
   }
 
   private fileExtract( fileList: FileList) {
-    for (const property in Object.getOwnPropertyNames( fileList ) ) {
+    for ( const property in Object.getOwnPropertyNames( fileList ) ) {
       const fileTemp = fileList[property];
       
-      if ( this.fileCamLoaded( fileTemp ) ) {
+      if ( this.fileCanLoaded( fileTemp ) ) {
         const newFile = new FileItem( fileTemp );
         this.files.push( newFile );
       }
     }
-
-    console.log( this.files );
   }
 
-  private fileCamLoaded( file: File ): boolean {
+  private fileCanLoaded( file: File ): boolean {
     if ( !this.fileDropped(file.name) && this.isImage( file.type ) ) {
       return true;
     } else {

@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from "../../models/product";
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-product-card',
@@ -9,14 +12,18 @@ import { Product } from "../../models/product";
 })
 export class AppProductCardComponent implements OnInit {
 
+  profileUrl: Observable<string | null>;
   @Input() product: Product;
   @Input() id: number;
 
   //@Output() productSelected: EventEmitter<number>;
 
-  constructor() { }
+  constructor(private storage: AngularFireStorage) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const ref = this.storage.ref(`img/${ this.product.id }`);
+    this.profileUrl = ref.getDownloadURL();
+    console.log(this.product.id);
   }
 
 }

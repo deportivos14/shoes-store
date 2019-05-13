@@ -11,6 +11,7 @@ import { FileItem } from '../../../models/FileItem';
 export class CreateProductComponent implements OnInit {
 
   product:Product = {
+    id: null,
     name: null,
     price: null,
     discount_price: null,
@@ -20,7 +21,7 @@ export class CreateProductComponent implements OnInit {
     available_color: null,
     description: null,
     sex: null,
-    published: null
+    published: true
   }
 
   files: FileItem[] = [];
@@ -29,19 +30,21 @@ export class CreateProductComponent implements OnInit {
   constructor(private productServ: ProductService ) { }
 
   ngOnInit() {
-    console.log(this.files)
   }
 
   saveData(dataForm){
-    console.log(dataForm.value);
+    this.productServ.add( this.product ).subscribe( res => {
+      //console.log(res.name);
+      this.productServ.uploadImagesFirebase( res[name], this.files );
+    });
   }
 
   uploadImages() {
-    this.productServ.uploadImagesFirebase( this.files );
+    //this.productServ.uploadImagesFirebase( this.files );
   }
 
-  testElement( event ) {
-    console.log( event );
+  cleanFiles() {
+    this.files = [];
   }
 
 }
