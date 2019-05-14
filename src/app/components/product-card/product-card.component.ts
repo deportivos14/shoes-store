@@ -15,6 +15,8 @@ export class AppProductCardComponent implements OnInit {
   profileUrl: Observable<string | null>;
   @Input() product: Product;
   @Input() id: number;
+  text_dark: boolean = true;
+  text_red: boolean = true;
 
   //@Output() productSelected: EventEmitter<number>;
 
