@@ -1,6 +1,6 @@
 <div class="container mt-4">
 
-  <h4>Product <small>Registrer</small></h4>
+  <h4>Register <small>product</small></h4>
   <hr>
   
   <form (ngSubmit)="saveData(dataForm)" #dataForm="ngForm" novalidate="">
@@ -76,12 +76,20 @@
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <label>Color</label>
-        <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (color.errors?.required) && color.touched }" 
-                [(ngModel)]="product.color" 
-                name="color" type="text" 
-                placeholder="Color" 
-                #color="ngModel" required>
+        
+        <ng-multiselect-dropdown 
+          [ngClass]="{ 'is-invalid': (color.errors?.required) && color.touched }" 
+          [placeholder]="'select color'"
+          [data]="dropdownList"
+          name="color"
+          #color="ngModel"
+          [(ngModel)]="product.available_color"
+          [settings]="dropdownSettings"
+          (onSelect)="onItemSelect($event)"
+          (onSelectAll)="onSelectAll($event)"
+          required
+      >
+      </ng-multiselect-dropdown>
         
         <div class="invalid-feedback" *ngIf="color.errors?.required">
             Este campo es requerido.
@@ -147,8 +155,7 @@
       <div class="col-md-8">
         <label>Upload files</label>
         <hr>
-        <button (click)="uploadImages()" [disabled]="files.length === 0" class="btn btn-outline-success">Upload</button>
-        <button class="btn btn-outline-danger">Clear</button>
+        <a (click)="cleanFiles()" class="btn btn-outline-danger">Clear</a>
 
         <table class="table">
           <thead class="thead-dark">
@@ -160,7 +167,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let file of files">
-              <td>{{ file.nameFile }}</td>
+              <td [ngClass]="{ 'text-green': file.progress >= 100 }">{{ file.nameFile }}</td>
               <td>2</td>
               <!--
                 <td>{{ file.file.size / 1024 /1024 || number: '.2-2' }} MB</td>

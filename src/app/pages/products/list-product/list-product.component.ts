@@ -19,19 +19,20 @@ export class ListProductComponent implements OnInit {
     this.productService.getProducts().subscribe(res => {
       const array = Object.keys(res).map(function(key, index) {
         return {
-            id: key,
-            name: res[key].name,
-            price: res[key].price,
-            discount_price: res[key].discount_price,
-            available_color: res[key].available_color,
-            stock: res[key].stock,
-            description: res[key].description,
-            size: res[key].size,
-            sex: res[key].sex,
-            published: res[key].published,
-            };
-        });
-        this.products = array;
+          id: key,
+          name: res[key].name,
+          price: res[key].price,
+          discount_price: res[key].discount_price,
+          available_color: res[key].available_color,
+          stock: res[key].stock,
+          description: res[key].description,
+          size: res[key].size,
+          sex: res[key].sex,
+          published: res[key].published,
+        };
+      });
+      this.products = array;
+      console.log(this.products);
         //console.log("datos", this.products);
     })
     //this.products = this.productService.getProducts();

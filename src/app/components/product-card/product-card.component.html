@@ -1,7 +1,7 @@
 <div class="card border-success">
   <div class="card-header">{{ product.name }}</div>
   <div class="card-body">
-    <img class="card-img-top" [src]="this.profileUrl | async" [alt]="product.name">
+    <img class="img-thumbnail" [src]="this.profileUrl | async" [alt]="product.name">
     <h5 class="card-title text-primary text-center mt-4">{{ product.name }}</h5>
     <ul class="list-unstyled">
         <li><i class="fas fa-check"></i> Android v4.4.2 (KitKat)</li>
