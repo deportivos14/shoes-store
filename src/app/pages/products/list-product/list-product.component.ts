@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 
 import { ProductService } from './../../../services/product.service';
 import { Product } from './../../../models/product';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-products',
@@ -12,8 +14,9 @@ import { Product } from './../../../models/product';
 })
 export class ListProductComponent implements OnInit {
   products: Array<Object> = [];
+  items: Observable<any[]>;
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private db: AngularFirestore) {}
 
   ngOnInit(): void {
     this.productService.getProducts().subscribe(res => {
@@ -34,7 +37,13 @@ export class ListProductComponent implements OnInit {
       this.products = array;
       console.log(this.products);
         //console.log("datos", this.products);
-    })
-    //this.products = this.productService.getProducts();
+    });
+
+    this.items = this.db.collection('products').stateChanges().subscribe( res => {
+      console.log("dato uno a uno", res);
+    });
+    //console.log("data", this.items);
+    
+    //console.log(this.productService.getProductsFiltered());
   }
 }

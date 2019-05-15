@@ -3,13 +3,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 
-import { AngularFirestore } from "angularfire2/firestore";
 import * as firebase from "firebase";
 
 import { Product } from '../models/product';
 import { FileItem } from '../models/FileItem';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +18,9 @@ export class ProductService {
 
   private IMAGES_FOLDER = "img"
   productURL:string = `${ environment.firebase.databaseURL }/products.json`;
+  database = firebase.database();
 
-  constructor(private db: AngularFirestore, private http: HttpClient) { }
+  constructor(private http: HttpClient, private db: AngularFirestore) { }
 
   add( product:Product ) {
     let body = JSON.stringify( product );
@@ -30,13 +31,16 @@ export class ProductService {
     return this.http.post( this.productURL, body, { headers });
   }
 
+  createUser( product:Product ) {
+    return this.db.collection('products').add( product );
+  }
+
   getProducts( ){
     return this.http.get<Product[]>( this.productURL );
   }
 
-  private saveProduct( product: Product ){
-    //this.http.post( this.productURL, body, { headers })
-    this.db.collection(`/${ this.IMAGES_FOLDER}`).add( product )
+  getProductsFiltered() {
+    return firebase.database().ref('products').orderByChild('starCount');
   }
 
   uploadImagesFirebase( name_product:String, images: FileItem[] ) {

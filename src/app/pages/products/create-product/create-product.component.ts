@@ -51,11 +51,21 @@ export class CreateProductComponent implements OnInit {
   }
 
   saveData(){
+    this.productServ.createUser( this.product )
+      .then(
+        res => {
+          //console.log("mi iddddd", res);
+          this.productServ.uploadImagesFirebase( res.id, this.files );
+          this.router.navigate(['/products']);
+        }
+      )
+
+/*
     this.productServ.add( this.product ).subscribe( res => {
       //console.log(res.name);
       this.productServ.uploadImagesFirebase( res.name, this.files );
       this.router.navigate(['/products']);
-    });
+    });*/
   }
 
   onItemSelect(item: any) {
