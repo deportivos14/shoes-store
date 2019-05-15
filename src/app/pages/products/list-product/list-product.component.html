@@ -1,6 +1,11 @@
 <div class="container py-5 bg-faded">
     <h3 id="title">BEST PRODUCTS</h3>
     <div class="card-columns">
-        <app-product-card [product]="product" [id]="keyvalue" *ngFor="let product of items | async | keyvalue; let i=index" ></app-product-card>
+        <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
+    </div>
+    <div style="text-align: center" *ngIf="products?.length == 0">
+        <h3>
+            No products registered
+        </h3>
     </div>
   </div>

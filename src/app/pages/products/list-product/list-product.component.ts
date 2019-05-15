@@ -15,35 +15,21 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class ListProductComponent implements OnInit {
   products: Array<Object> = [];
   items: Observable<any[]>;
+  items2: Observable<any[]>;
+  //let datos = [];
 
   constructor(private productService: ProductService, private db: AngularFirestore) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(res => {
-      const array = Object.keys(res).map(function(key, index) {
-        return {
-          id: key,
-          name: res[key].name,
-          price: res[key].price,
-          discount_price: res[key].discount_price,
-          available_color: res[key].available_color,
-          stock: res[key].stock,
-          description: res[key].description,
-          size: res[key].size,
-          sex: res[key].sex,
-          published: res[key].published,
-        };
+    let datos = [];
+    this.db.collection('products').get().subscribe( async ( res ) => {
+      res.forEach( async ( doc ) => {
+        let product = doc.data();
+        product.id = doc.id;
+        product.image = doc.id;
+        datos.push(product);
       });
-      this.products = array;
-      console.log(this.products);
-        //console.log("datos", this.products);
     });
-
-    this.items = this.db.collection('products').stateChanges().subscribe( res => {
-      console.log("dato uno a uno", res);
-    });
-    //console.log("data", this.items);
-    
-    //console.log(this.productService.getProductsFiltered());
+    this.products = datos;
   }
 }

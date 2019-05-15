@@ -54,7 +54,6 @@ export class CreateProductComponent implements OnInit {
     this.productServ.createUser( this.product )
       .then(
         res => {
-          //console.log("mi iddddd", res);
           this.productServ.uploadImagesFirebase( res.id, this.files );
           this.router.navigate(['/products']);
         }
