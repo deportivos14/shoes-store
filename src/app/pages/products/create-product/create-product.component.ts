@@ -51,6 +51,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   saveData(){
+    //console.log(this.product);
     this.productServ.createUser( this.product )
       .then(
         res => {

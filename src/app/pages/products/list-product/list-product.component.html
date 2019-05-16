@@ -1,4 +1,36 @@
 <div class="container py-5 bg-faded">
+    <div>
+        <div class="form-row">
+            <div class="col-md-3 mb-3">
+                <label>Size</label>
+
+                <ng-multiselect-dropdown 
+                    [placeholder]="'select size'"
+                    [data]="dropdownListSize"
+                    name="size"
+                    [(ngModel)]="filters.size"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <label>Sex</label>
+                
+                <ng-multiselect-dropdown 
+                    [placeholder]="'select sex'"
+                    [data]="dropdownListSex"
+                    name="sex"
+                    [(ngModel)]="filters.sex"
+                    [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)"
+                >
+                </ng-multiselect-dropdown>
+            </div>
+        </div>
+
+    </div>
     <h3 id="title">BEST PRODUCTS</h3>
     <div class="card-columns">
         <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>

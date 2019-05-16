@@ -25,8 +25,6 @@ export class AppProductCardComponent implements OnInit {
   async ngOnInit() {
     const ref = this.storage.ref(`img/${ this.product.id }`);
     this.profileUrl = ref.getDownloadURL();
-    console.log("este es el id", this.product);
-    console.log("este es el id", this.id);
   }
 
 }

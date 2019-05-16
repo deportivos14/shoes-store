@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import * as firebase from "firebase";
@@ -18,7 +17,6 @@ export class ProductService {
 
   private IMAGES_FOLDER = "img"
   productURL:string = `${ environment.firebase.databaseURL }/products.json`;
-  database = firebase.database();
 
   constructor(private http: HttpClient, private db: AngularFirestore) { }
 
@@ -37,10 +35,6 @@ export class ProductService {
 
   getProducts( ){
     return this.http.get<Product[]>( this.productURL );
-  }
-
-  getProductsFiltered() {
-    return firebase.database().ref('products').orderByChild('starCount');
   }
 
   uploadImagesFirebase( name_product:String, images: FileItem[] ) {
