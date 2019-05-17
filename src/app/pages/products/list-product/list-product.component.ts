@@ -23,8 +23,8 @@ export class ListProductComponent implements OnInit {
   ];
 
   dropdownListSex = [
-    { item_id: 'man', item_text: 'Hombre' },
-    { item_id: 'woman', item_text: 'Mujer' },
+    { item_id: 'male', item_text: 'Hombre' },
+    { item_id: 'female', item_text: 'Mujer' },
   ];
 
   dropdownSettings = {
@@ -57,14 +57,16 @@ export class ListProductComponent implements OnInit {
   }
 
   onItemSelect(event) {
+    
     this.products = [];
-    let datos = [];
-    //let selected = this.filters.size[0].item_id;
-    let selected = event.item_id;
-    console.log(event.item_id)
-    this.db.collection("products", ref => ref.where('size', '==', event.item_id))
+    let datos = []; 
+    let size = this.filters.size ? this.filters.size[0].item_id : null ;
+    let sex = this.filters.sex ? this.filters.sex[0].item_id : null;
+    //let selected = event.item_id;
+
+    this.db.collection("products", ref => this.filter( ref, size, sex ) )
                                             .get().subscribe( res => {
-      res.forEach( ( doc ) => {
+                                              res.forEach( ( doc ) => {
         let product = doc.data();
         product.id = doc.id;
         product.image = doc.id;
@@ -73,6 +75,19 @@ export class ListProductComponent implements OnInit {
     });
 
     this.products = datos;
+  }
+
+  filter( ref, size?, sex? ) {
+    //console.log("size", size, "sex", sex)
+    if (size) {
+      return ref.where('size', '==', size);
+    }
+    if (sex) {
+      return ref.where('sex', '==', sex);
+    }
+    if (size && sex) {
+      return ref.where('sex', '==', sex).where('size', '==', size);
+    }
   }
 
   /*
