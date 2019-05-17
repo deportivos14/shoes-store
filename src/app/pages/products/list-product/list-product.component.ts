@@ -79,14 +79,18 @@ export class ListProductComponent implements OnInit {
 
   filter( ref, size?, sex? ) {
     //console.log("size", size, "sex", sex)
-    if (size) {
+    if (size && sex == null) {
+      console.log("entro size")
       return ref.where('size', '==', size);
     }
-    if (sex) {
+    if (sex && size == null) {
+      console.log("entro sex")
       return ref.where('sex', '==', sex);
     }
     if (size && sex) {
-      return ref.where('sex', '==', sex).where('size', '==', size);
+      console.log("entro size and sex")
+      console.log("entro size and sex")
+      return ref.where('size', '==', size).where('sex', '==', sex);
     }
   }
 
