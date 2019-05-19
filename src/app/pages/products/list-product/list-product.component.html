@@ -2,10 +2,10 @@
     <div>
         <div class="form-row">
             <div class="col-md-3 mb-3">
-                <label>Size</label>
+                <label>Talla</label>
 
                 <ng-multiselect-dropdown 
-                    [placeholder]="'select size'"
+                    [placeholder]="'Seleccione una talla'"
                     [data]="dropdownListSize"
                     name="size"
                     [(ngModel)]="filters.size"
@@ -16,10 +16,10 @@
             </div>
 
             <div class="col-md-3 mb-3">
-                <label>Sex</label>
+                <label>Sexo</label>
                 
                 <ng-multiselect-dropdown 
-                    [placeholder]="'select sex'"
+                    [placeholder]="'Seleccione el sexo'"
                     [data]="dropdownListSex"
                     name="sex"
                     [(ngModel)]="filters.sex"
@@ -31,13 +31,13 @@
         </div>
 
     </div>
-    <h3 id="title">BEST PRODUCTS</h3>
+    <h3 id="title">MEJORES PRODUCTOS</h3>
     <div class="card-columns">
         <app-product-card [product]="product" *ngFor="let product of products"></app-product-card>
     </div>
     <div style="text-align: center" *ngIf="products?.length == 0">
         <h3>
-            No products registered
+            No hay productos registrados
         </h3>
     </div>
   </div>

@@ -6,7 +6,6 @@ import * as firebase from "firebase";
 
 import { Product } from '../models/product';
 import { FileItem } from '../models/FileItem';
-import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { AngularFirestore } from 'angularfire2/firestore';
 
@@ -15,26 +14,33 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class ProductService {
 
-  private IMAGES_FOLDER = "img"
-  productURL:string = `${ environment.firebase.databaseURL }/products.json`;
+  private IMAGES_FOLDER = "img";
+  private COLLECTION = "products";
 
-  constructor(private http: HttpClient, private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore) { }
 
-  add( product:Product ) {
-    let body = JSON.stringify( product );
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-
-    return this.http.post( this.productURL, body, { headers });
+  createProduct( product:Product ) {
+    return this.db.collection(this.COLLECTION).add( product );
   }
 
-  createUser( product:Product ) {
-    return this.db.collection('products').add( product );
+  getProducts() {
+    return this.db.collection(this.COLLECTION).get();
   }
 
-  getProducts( ){
-    return this.http.get<Product[]>( this.productURL );
+  getProductsFiltered(size: string, sex:string) {
+    return this.db.collection(this.COLLECTION, ref => this.filter( ref, size, sex ) ).get();
+  }
+
+  filter( ref, size?, sex? ) {
+    if (size && sex == null) {
+      return ref.where('size', '==', size);
+    }
+    if (sex && size == null) {
+      return ref.where('sex', '==', sex);
+    }
+    if (size && sex) {
+      return ref.where('size', '==', size).where('sex', '==', sex);
+    }
   }
 
   uploadImagesFirebase( name_product:String, images: FileItem[] ) {

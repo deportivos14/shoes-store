@@ -52,7 +52,7 @@ export class CreateProductComponent implements OnInit {
 
   saveData(){
     //console.log(this.product);
-    this.productServ.createUser( this.product )
+    this.productServ.createProduct( this.product )
       .then(
         res => {
           this.productServ.uploadImagesFirebase( res.id, this.files );
@@ -69,10 +69,10 @@ export class CreateProductComponent implements OnInit {
   }
 
   onItemSelect(item: any) {
-    console.log(item);
+    //console.log(item);
   }
   onSelectAll(items: any) {
-    console.log(items);
+    //console.log(items);
   }
 
   uploadImages() {

@@ -45,73 +45,30 @@ export class ListProductComponent implements OnInit {
 
   ngOnInit(): void {
     let datos = [];
-    this.db.collection('products').get().subscribe( ( res ) => {
-      res.forEach( ( doc ) => {
-        let product = doc.data();
-        product.id = doc.id;
-        product.image = doc.id;
-        datos.push(product);
-      });
-    });
+    this.productService.getProducts().subscribe( res => this.mappingData(res, datos) );
     this.products = datos;
   }
 
   onItemSelect(event) {
     
     this.products = [];
-    let datos = []; 
+    let datos = [];
     let size = this.filters.size ? this.filters.size[0].item_id : null ;
     let sex = this.filters.sex ? this.filters.sex[0].item_id : null;
-    //let selected = event.item_id;
 
-    this.db.collection("products", ref => this.filter( ref, size, sex ) )
-                                            .get().subscribe( res => {
-                                              res.forEach( ( doc ) => {
-        let product = doc.data();
-        product.id = doc.id;
-        product.image = doc.id;
-        datos.push(product);
-      })
-    });
+    this.productService.getProductsFiltered(size, sex).subscribe( res => this.mappingData(res, datos) );
 
     this.products = datos;
   }
 
-  filter( ref, size?, sex? ) {
-    //console.log("size", size, "sex", sex)
-    if (size && sex == null) {
-      console.log("entro size")
-      return ref.where('size', '==', size);
-    }
-    if (sex && size == null) {
-      console.log("entro sex")
-      return ref.where('sex', '==', sex);
-    }
-    if (size && sex) {
-      console.log("entro size and sex")
-      console.log("entro size and sex")
-      return ref.where('size', '==', size).where('sex', '==', sex);
-    }
-  }
-
-  /*
-  this.products = [];
-    let datos = [];
-
-    this.db.collection("products", ref => ref.where('published', '==', true)
-                                            .where('name', '==', "Calzado infantil Zapatillas"))
-                                            .get().subscribe( res => {
-      res.forEach( ( doc ) => {
-        console.log("datos", doc.data());
-        let product = doc.data();
-        product.id = doc.id;
-        product.image = doc.id;
-        datos.push(product);
-      })
+  mappingData( data, res ) {
+    data.forEach( ( doc ) => {
+      let product = doc.data();
+      product.id = doc.id;
+      product.image = doc.id;
+      res.push(product);
     });
 
-    this.products = datos;
-    */
-
-
+    return res;
+  }
 }
