@@ -1,18 +1,18 @@
 <div class="container mt-4">
 
-  <h4>Register <small>product</small></h4>
+  <h4>Registrar <small>producto</small></h4>
   <hr>
   
   <form (ngSubmit)="saveData(dataForm)" #dataForm="ngForm" novalidate="">
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label>Name</label>
+        <label>Nombre del producto</label>
         <input class="form-control" 
                 [ngClass]="{ 'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }" 
                 minlength="5" 
                 [(ngModel)]="product.name" 
                 name="name" type="text" 
-                placeholder="Name" 
+                placeholder="Nombre" 
                 #name="ngModel" required>
         
         <div class="invalid-feedback" *ngIf="name.errors?.required">
@@ -28,14 +28,22 @@
       <div class="col-md-6 mb-3">
         <label>Stock</label>
         <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (stock.errors?.required) && stock.touched }" 
+                [ngClass]="{ 
+                  'is-invalid': (stock.errors?.required || stock.errors?.pattern) && stock.touched,
+                  'is-valid': (!stock.errors?.required && !stock.errors?.pattern)
+                }" 
                 [(ngModel)]="product.stock" 
                 name="stock" type="number" 
                 placeholder="Stock"
+                pattern="^[0-9]+"
                 #stock="ngModel" required>
         
         <div class="invalid-feedback" *ngIf="stock.errors?.required">
             Este campo es requerido.
+        </div>
+
+        <div class="invalid-feedback" *ngIf="stock.errors?.pattern">
+            El campo solamente admite numeros positivos.
         </div>
         
       </div>
@@ -43,31 +51,58 @@
     
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label>Price</label>
-        <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (price.errors?.required) && price.touched }" 
-                [(ngModel)]="product.price" 
-                name="price" type="text" 
-                placeholder="Price" 
-                #price="ngModel" required>
-        
-        <div class="invalid-feedback" *ngIf="price.errors?.required">
-            Este campo es requerido.
-        </div>
+        <label>Precio del producto</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">BS</span>
+          </div>
+          <input class="form-control" 
+                  [ngClass]="{ 
+                    'is-invalid': (price.errors?.required || price.errors?.pattern) && price.touched,
+                    'is-valid': (!price.errors?.required && !price.errors?.pattern)
+                  }" 
+                  [(ngModel)]="product.price" 
+                  name="price" type="text" 
+                  placeholder="Precio"
+                  pattern="^[1-9]\d*(\.\d+)?$"
+                  #price="ngModel" required>
+          
+          <div class="invalid-feedback" *ngIf="price.errors?.required">
+              Este campo es requerido.
+          </div>
 
+          <div class="invalid-feedback" *ngIf="price.errors?.pattern">
+              El campo solamente admite numeros positivos.
+          </div>
+
+        </div>
       </div>
       
       <div class="col-md-6 mb-3">
-        <label>Discount Price</label>
-        <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (discount_price.errors?.required) && discount_price.touched }" 
-                [(ngModel)]="product.discount_price" 
-                name="discount_price" type="number"
-                placeholder="Discount Price" 
-                #discount_price="ngModel" required>
-        
-        <div class="invalid-feedback" *ngIf="discount_price.errors?.required">
-            Este campo es requerido.
+        <label>Precio del producto en descuento</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">BS</span>
+          </div>
+          <input class="form-control" 
+                  [ngClass]="{ 
+                    'is-invalid': (discount_price.errors?.required || discount_price.errors?.pattern) && discount_price.touched,
+                    'is-valid': (!discount_price.errors?.required && !discount_price.errors?.pattern)
+                  }" 
+                  [(ngModel)]="product.discount_price" 
+                  name="discount_price" type="number"
+                  placeholder="Precio de descuento"
+                  pattern="^[1-9]\d*(\.\d+)?$"
+                  #discount_price="ngModel" required>
+          
+          <div class="invalid-feedback" *ngIf="discount_price.errors?.required">
+              Este campo es requerido.
+          </div>
+
+          <div class="invalid-feedback" *ngIf="discount_price.errors?.pattern">
+              El campo solamente admite numeros positivos.
+          </div>
+
         </div>
         
       </div>
@@ -75,11 +110,11 @@
 
     <div class="form-row">
       <div class="col-md-6 mb-3">
-        <label>Color</label>
+        <label>Colores disponibles</label>
         
         <ng-multiselect-dropdown 
           [ngClass]="{ 'is-invalid': (color.errors?.required) && color.touched }" 
-          [placeholder]="'select color'"
+          [placeholder]="'Selecciona colores'"
           [data]="dropdownList"
           name="color"
           #color="ngModel"
@@ -98,12 +133,12 @@
       </div>
       
       <div class="col-md-6 mb-3">
-        <label>Size</label>
+        <label>Talla</label>
         <input class="form-control" 
                 [ngClass]="{ 'is-invalid': (size.errors?.required) && size.touched }" 
                 [(ngModel)]="product.size" 
                 name="size" type="number"
-                placeholder="Size" 
+                placeholder="Talla de las zapatillas" 
                 #size="ngModel" required>
         
         <div class="invalid-feedback" *ngIf="size.errors?.required">
@@ -114,12 +149,12 @@
     </div>
 
     <div class="form-group">
-      <label>Description</label>
+      <label>Descripción</label>
       <textarea class="form-control" 
               [ngClass]="{ 'is-invalid': (description.errors?.required) && description.touched }" 
               [(ngModel)]="product.description" 
               name="description"
-              placeholder="Insert description of your product" 
+              placeholder="Inserta una descripción del producto a ser registrada" 
               #description="ngModel" required></textarea>
       
       <div class="invalid-feedback" *ngIf="description.errors?.required">
@@ -129,7 +164,7 @@
     </div>
     
     <div class="form-group">
-        <legend class="col-form-label col-sm-2 pt-0">Sex</legend>
+        <legend class="col-form-label col-sm-2 pt-0">Sexo</legend>
         <div class="col-sm-10">
           <div class="form-check">
             <input class="form-check-input" 
@@ -138,7 +173,7 @@
                    [(ngModel)]="product.sex"
                    value="male">
             <label class="form-check-label">
-              Male
+              Masculino
             </label>
           </div>
           <div class="form-check">
@@ -148,7 +183,7 @@
                    [(ngModel)]="product.sex"
                    value="female">
             <label class="form-check-label">
-              Female
+              Femenino
             </label>
           </div>
         </div>
@@ -157,23 +192,23 @@
     <div class="form-row">
 
       <div class="col-md-4">
-        <label>Select files</label>
+        <label>Seleccione imagenes del producto</label>
         <div NgDropFiles [files]="files" (aboutMouse)="isAboutElement = $event" [ngClass]="{ 'file-over': isAboutElement }" class="well drop-zone">
-          <h4>Files here</h4>
+          <h4>Arrastre los archivos aqui</h4>
           <img src="assets/images/drop-images.png">
         </div>
       </div>
       <div class="col-md-8">
-        <label>Upload files</label>
+        <label>Lista de imagenes</label>
         <hr>
         <a (click)="cleanFiles()" class="btn btn-outline-danger">Clear</a>
 
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th>Name File</th>
-              <th>Size File</th>
-              <th>Progress</th>
+              <th>Nombre</th>
+              <th>Tamaño</th>
+              <th>Progreso</th>
             </tr>
           </thead>
           <tbody>
@@ -198,7 +233,7 @@
 
     <div class="col text-center">
       <button type="submit" class="btn btn-outline-primary" [disabled]="!dataForm.valid">
-        Save Product
+        Guardar Producto
       </button>
     </div>
 
