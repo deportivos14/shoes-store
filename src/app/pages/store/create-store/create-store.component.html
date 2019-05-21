@@ -1,0 +1,59 @@
+<div class="container mt-4">
+
+  <h4>Register <small>product</small></h4>
+  <hr>
+  
+  <form (ngSubmit)="saveData()" #dataForm="ngForm" novalidate="">
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label>Nombre Tienda</label>
+        <input class="form-control" 
+                [ngClass]="{ 'is-invalid': (nameT.errors?.required || nameT.errors?.minlength) && nameT.touched }" 
+                minlength="5" 
+                [(ngModel)]="store.name" 
+                name="nameT" type="text" 
+                placeholder="Nombre Tienda" 
+                #nameT="ngModel" required>
+        
+        <div class="invalid-feedback" *ngIf="nameT.errors?.required">
+            Este campo es requerido.
+        </div>
+
+        <div class="invalid-feedback" *ngIf="nameT.errors?.minlength">
+            Este campo requiere al menos 5 caracteres.
+        </div>
+
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label>Telefono</label>
+      <input class="form-control" 
+              [ngClass]="{ 'is-invalid': (telefono.errors?.required) && telefono.touched }" 
+              [(ngModel)]="store.telefono" 
+              name="telefono" type="number" 
+              placeholder="Telefono"
+              #telefono="ngModel" required>
+      
+      <div class="invalid-feedback" *ngIf="telefono.errors?.required">
+          Este campo es requerido.
+      </div>
+      
+    </div>
+
+
+
+    <div class="col text-center">
+      <button type="submit" class="btn btn-outline-primary" [disabled]="!dataForm.valid">
+        Save Store
+      </button>
+    </div>
+
+
+
+
+    
+
+
+  </form>
+ </div>
+
