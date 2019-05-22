@@ -11,6 +11,8 @@ export class CreateStoreComponent implements OnInit {
     name:null,
     nit:null,
     direccion:null
+    //email:null
+    //contraseña:null
 
   }
 
