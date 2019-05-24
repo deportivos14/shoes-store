@@ -5,17 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { StoreRoutingModule } from './store-routing.module';
-import { AppProductCardComponent } from './../../components/product-card/product-card.component';
 import { StoreService } from './../../services/store.service';
-import { NgDropFilesDirective } from './../../directives/ng-drop-files.directive';
 import { CreateStoreComponent } from "./create-store/create-store.component";
 import { ListStoreComponent } from './list-store/list-store.component';
 
 @NgModule({
   declarations: [
-     CreateStoreComponent,
-    AppProductCardComponent,
-    NgDropFilesDirective,
+    CreateStoreComponent,
     ListStoreComponent
   ],
   imports: [
