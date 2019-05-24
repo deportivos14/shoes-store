@@ -14,6 +14,18 @@ export const environment = {
     appId: '1:425819031764:web:f733e5edb2cd4c9e'
   }
 };
+export const test = {
+  production: false,
+  firebase: {
+    apiKey: 'AIzaSyClFQVNkihO81jkMU7OPU6pKPlxpNE8mdU',
+    authDomain: 'shoes-store-edd84.firebaseapp.com',
+    databaseURL: 'https://shoes-store-edd84.firebaseio.com',
+    projectId: 'shoes-store-edd84',
+    storageBucket: 'shoes-store-edd84.appspot.com',
+    messagingSenderId: '425819031764',
+    appId: '1:425819031764:web:f733e5edb2cd4c9e'
+  }
+};
 
 /*
  * For easier debugging in development mode, you can import the following file
