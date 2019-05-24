@@ -8,9 +8,8 @@
       <div class="col-md-6 mb-3">
         <label>Nombre del producto</label>
         <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (name.errors?.required || name.errors?.minlength || name.errors?.maxlength) && name.touched }" 
-                minlength="5"
-                maxlength="30" 
+                [ngClass]="{ 'is-invalid': (name.errors?.required || name.errors?.minlength) && name.touched }" 
+                minlength="5" 
                 [(ngModel)]="product.name" 
                 name="name" type="text" 
                 placeholder="Nombre" 
@@ -20,13 +19,9 @@
             Este campo es requerido.
         </div>
 
-        <div class="invalid-feedback" *ngIf="name.errors?.minlength" >
+        <div class="invalid-feedback" *ngIf="name.errors?.minlength">
             Este campo requiere al menos 5 caracteres.
         </div>
-
-        <div class="invalid-feedback" *ngIf="name.errors?.maxlength" >
-          maximo 30 caracteres permitido.
-      </div>
 
       </div>
       
