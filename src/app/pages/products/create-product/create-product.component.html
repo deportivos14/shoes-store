@@ -8,7 +8,10 @@
       <div class="col-md-6 mb-3">
         <label>Nombre del producto</label>
         <input class="form-control" 
-                [ngClass]="{ 'is-invalid': (name.errors?.required || name.errors?.minlength || name.errors?.maxlength) && name.touched }" 
+                [ngClass]="{ 
+                  'is-invalid': (name.errors?.required || name.errors?.minlength || name.errors?.maxlength) && name.touched ,
+                  'is-valid': (!name.errors?.required && !name.errors?.pattern)
+                }" 
                 minlength="5"
                 maxlength="30" 
                 [(ngModel)]="product.name" 
@@ -26,7 +29,7 @@
 
         <div class="invalid-feedback" *ngIf="name.errors?.maxlength" >
           maximo 30 caracteres permitido.
-      </div>
+        </div>
 
       </div>
       
