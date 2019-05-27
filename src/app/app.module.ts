@@ -11,6 +11,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { environment } from '../environments/environment';
+import { StoreModule } from '@ngrx/store';
+import { counterReducer } from './counter.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { shoppingReducer } from './shopping_cart.reducer';
 
 @NgModule({
   declarations: [
@@ -23,7 +27,12 @@ import { environment } from '../environments/environment';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    StoreModule.forRoot( { shopping_cart: shoppingReducer } ),
+    StoreDevtoolsModule.instrument( {
+      maxAge: 25,
+      logOnly: environment.production
+    } )
   ],
   bootstrap: [AppComponent]
 })

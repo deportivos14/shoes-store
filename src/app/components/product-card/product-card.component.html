@@ -4,7 +4,7 @@
     <img class="card-img-top img-fluid mx-auto d-block" [src]="this.profileUrl | async" [alt]="product.name">
     <h5 class="card-title text-primary text-center mt-4">{{ product.name }}</h5>
     <div class="text-center">
-      <a [routerLink]="" (click)="text_dark = !text_dark"><i [ngClass]="{ 'text-dark': text_dark }" class="fas fa-shopping-cart fa-2x"></i></a>
+      <a [routerLink]="" (click)="addShoppingCart()"><i [ngClass]="{ 'text-dark': !flag_shopping_cart }" class="fas fa-shopping-cart fa-2x"></i></a>
       <a [routerLink]="" (click)="text_red = !text_red"><i [ngClass]="{ 'text-danger': !text_red, 'text-dark': text_red }" class="ml-2 fas fa-heart fa-2x"></i></a>
     </div>
     <!--
