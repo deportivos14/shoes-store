@@ -1,11 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { Product } from "../../models/product";
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Store, select } from '@ngrx/store';
-import { Increment, Decrement } from 'src/app/counter.actions';
 import { IncrementProduct, DecrementProduct } from 'src/app/shopping_cart.actions';
 
 @Component({
@@ -20,14 +17,15 @@ export class AppProductCardComponent implements OnInit {
   @Input() id: number;
   flag_shopping_cart: boolean = false;
   text_red: boolean = true;
-  countProducts: Observable<number>;
+  countProducts: number;
   shopping_cart: Observable<Object>;
 
   //@Output() productSelected: EventEmitter<number>;
 
-  constructor(private storage: AngularFireStorage, private store: Store<{ count: number }>, private storeProduct: Store<{ shopping: number }>) { 
-    this.countProducts = store.pipe( select('count'));
+  constructor(private storage: AngularFireStorage, private storeProduct: Store<{ shopping: number }>) { 
     this.shopping_cart = storeProduct.pipe( select('shopping_cart'));
+    this.shopping_cart.subscribe( (res: Product[]) => this.countProducts = res.length )
+    //console.log("mis datos", this.shopping_cart)
   }
 
   async ngOnInit() {
@@ -38,11 +36,9 @@ export class AppProductCardComponent implements OnInit {
   addShoppingCart() {
     if (this.flag_shopping_cart) {
       this.flag_shopping_cart = !this.flag_shopping_cart;
-      //this.store.dispatch( new Decrement() );
       this.storeProduct.dispatch( new DecrementProduct( this.product ) );
     } else {
       this.flag_shopping_cart = !this.flag_shopping_cart;
-      //this.store.dispatch( new Increment() );
       this.storeProduct.dispatch( new IncrementProduct( this.product ) );
     }
   }

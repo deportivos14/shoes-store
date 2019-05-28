@@ -12,7 +12,6 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './counter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { shoppingReducer } from './shopping_cart.reducer';
 

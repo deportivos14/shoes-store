@@ -10,11 +10,11 @@ import { Product } from 'src/app/models/product';
 })
 export class NavbarComponent {
 
-  products: Observable<number>;
-  countProducts: Observable<number>;
+  countProducts: number;
+  shopping_cart: Observable<Object>;
   
-  constructor(private store: Store<{ shopping_cart: Array<Product[]> }>) {
-    this.products = store.pipe( select('shopping_cart'));
-    this.products.subscribe( res => this.countProducts = res.length );
+  constructor(private storeProduct: Store<{ shopping_cart: Array<Product[]> }>) {
+    this.shopping_cart = storeProduct.pipe( select('shopping_cart'));
+    this.shopping_cart.subscribe( (res: Product[]) => this.countProducts = res.length )
   }
 }
