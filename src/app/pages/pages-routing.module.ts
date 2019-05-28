@@ -7,11 +7,14 @@ import { CreateProductComponent } from './products/create-product/create-product
 import { ListStoreComponent } from "./store/list-store/list-store.component";
 import { CreateStoreComponent } from "./store/create-store/create-store.component";
 
+import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
+
 const routes: Routes = [
   { path: 'products/list', component: ListProductComponent },
   { path: 'products/create', component: CreateProductComponent },
   { path: 'shops/list', component: ListStoreComponent },
   { path: 'shops/create', component: CreateStoreComponent },
+  { path: 'shopping_cart', component: ShoppingCartComponent },
 ];
 
 @NgModule({
