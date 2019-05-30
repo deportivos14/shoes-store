@@ -22,6 +22,7 @@ import { ListStoreComponent } from './store/list-store/list-store.component';
 
 //cart
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { AddressRegisterComponent } from './shopping-cart/address-register/address-register.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
     AppProductCardComponent,
     ShoppingCartComponentItem,
     NgDropFilesDirective,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    AddressRegisterComponent
   ],
   imports: [
     CommonModule, 

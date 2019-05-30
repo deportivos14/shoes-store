@@ -15,6 +15,8 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { shoppingReducer } from './shopping_cart.reducer';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -23,6 +25,7 @@ import { shoppingReducer } from './shopping_cart.reducer';
     BrowserModule, 
     AppRoutingModule, 
     LayoutModule,
+    NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,

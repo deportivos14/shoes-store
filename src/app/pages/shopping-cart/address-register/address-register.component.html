@@ -1,0 +1,321 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+          <div class="card-header">
+              <div class="float-left">
+                  <h3>Direccion de envio</h3>
+              </div>
+              <div class="float-right">
+                  <a (click)="open(content)" routerLink="/shopping_cart/address_register" class="btn btn-outline-warning">Agregar Direccion</a>
+              </div>
+          </div>
+          <div class="card-body">
+            Hola
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title">Agregar Direccion</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="onSaveAndClose()" #dataForm="ngForm">
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Codigo pin</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (code_pin.errors?.required || code_pin.errors?.minlength || code_pin.errors?.maxlength) && code_pin.touched ,
+                            'is-valid': (!code_pin.errors?.required && !code_pin.errors?.pattern)
+                          }" 
+                          minlength="5"
+                          maxlength="30" 
+                          [(ngModel)]="address.pin_code" 
+                          name="code_pin" type="text" 
+                          placeholder="Codigo Pin" 
+                          #code_pin="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="code_pin.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="code_pin.errors?.minlength" >
+                      Este campo requiere al menos 5 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="code_pin.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+          
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Celular/Telefono</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (phone.errors?.required || phone.errors?.minlength || phone.errors?.maxlength || phone.errors?.pattern) && phone.touched ,
+                            'is-valid': (!phone.errors?.required && !phone.errors?.pattern)
+                          }" 
+                          minlength="5"
+                          maxlength="30" 
+                          [(ngModel)]="address.nro_mobile" 
+                          name="phone" type="text" 
+                          placeholder="Telefono/Celular"
+                          pattern="^[1-9]\d*(\.\d+)?$" 
+                          #phone="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="phone.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="phone.errors?.minlength" >
+                      Este campo requiere al menos 5 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="phone.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+
+                  <div class="invalid-feedback" *ngIf="phone.errors?.pattern">
+                      El campo solamente admite numeros positivos.
+                  </div>
+          
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Nombre</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (name.errors?.required || name.errors?.minlength || name.errors?.maxlength) && name.touched ,
+                            'is-valid': (!name.errors?.required && !name.errors?.pattern)
+                          }" 
+                          minlength="3"
+                          maxlength="30" 
+                          [(ngModel)]="address.first_name" 
+                          name="name" type="text" 
+                          placeholder="Nombre" 
+                          #name="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="name.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="name.errors?.minlength" >
+                      Este campo requiere al menos 3 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="name.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+          
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Apellido</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (last_name.errors?.required || last_name.errors?.minlength || last_name.errors?.maxlength) && last_name.touched ,
+                            'is-valid': (!last_name.errors?.required)
+                          }" 
+                          minlength="3"
+                          maxlength="30"
+                          [(ngModel)]="address.last_name" 
+                          name="phone" type="text" 
+                          placeholder="Apellido"
+                          #last_name="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="last_name.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="last_name.errors?.minlength" >
+                      Este campo requiere al menos 3 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="last_name.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+          
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Localidad</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (locaty_town.errors?.required || locaty_town.errors?.minlength || locaty_town.errors?.maxlength) && locaty_town.touched ,
+                            'is-valid': (!locaty_town.errors?.required)
+                          }" 
+                          minlength="4"
+                          maxlength="30" 
+                          [(ngModel)]="address.locaty_town" 
+                          name="locaty_town" type="text"
+                          placeholder="Localidad" 
+                          #locaty_town="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="locaty_town.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="locaty_town.errors?.minlength" >
+                      Este campo requiere al menos 4 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="locaty_town.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+          
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                  <label>Ciudad</label>
+                  <input class="form-control" 
+                          [ngClass]="{ 
+                            'is-invalid': (city.errors?.required || city.errors?.minlength || city.errors?.maxlength) && city.touched ,
+                            'is-valid': (!city.errors?.required)
+                          }" 
+                          minlength="3"
+                          maxlength="30"
+                          [(ngModel)]="address.city_district" 
+                          name="city_district" type="text" 
+                          placeholder="Ciudad"
+                          #city="ngModel" required>
+                  
+                  <div class="invalid-feedback" *ngIf="city.errors?.required">
+                      Este campo es requerido.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="city.errors?.minlength" >
+                      Este campo requiere al menos 3 caracteres.
+                  </div>
+          
+                  <div class="invalid-feedback" *ngIf="city.errors?.maxlength" >
+                    maximo 30 caracteres permitido.
+                  </div>
+          
+              </div>
+            </div>
+          </div>
+
+        <div class="form-group">
+            <label>Direccion</label>
+            <textarea class="form-control" 
+                    [ngClass]="{ 
+                      'is-invalid': (street_address.errors?.required || street_address.errors?.minlength || street_address.errors?.maxlength) && street_address.touched ,
+                      'is-valid': (!street_address.errors?.required)
+                    }" 
+                    minlength="3"
+                    maxlength="250"
+                    [(ngModel)]="address.street_address" 
+                    name="street_address" type="text" 
+                    placeholder="Direccion"
+                    #street_address="ngModel" required></textarea>
+            
+            <div class="invalid-feedback" *ngIf="street_address.errors?.required">
+                Este campo es requerido.
+            </div>
+    
+            <div class="invalid-feedback" *ngIf="street_address.errors?.minlength" >
+                Este campo requiere al menos 3 caracteres.
+            </div>
+    
+            <div class="invalid-feedback" *ngIf="street_address.errors?.maxlength" >
+              maximo 250 caracteres permitido.
+            </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>Pais</label>
+                <input class="form-control" 
+                        [ngClass]="{ 
+                          'is-invalid': (country.errors?.required || country.errors?.minlength || country.errors?.maxlength) && country.touched ,
+                          'is-valid': (!country.errors?.required)
+                        }" 
+                        minlength="4"
+                        maxlength="30" 
+                        [(ngModel)]="address.country" 
+                        name="country" type="text"
+                        placeholder="Pais" 
+                        value="Bolivia"
+                        #country="ngModel" required>
+                
+                <div class="invalid-feedback" *ngIf="country.errors?.required">
+                    Este campo es requerido.
+                </div>
+        
+                <div class="invalid-feedback" *ngIf="country.errors?.minlength" >
+                    Este campo requiere al menos 4 caracteres.
+                </div>
+        
+                <div class="invalid-feedback" *ngIf="country.errors?.maxlength" >
+                  maximo 30 caracteres permitido.
+                </div>
+        
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+                <label>Nro. Casa</label>
+                <input class="form-control" 
+                        [ngClass]="{ 
+                          'is-invalid': (number_house.errors?.required || number_house.errors?.minlength || number_house.errors?.maxlength) && number_house.touched ,
+                          'is-valid': (!number_house.errors?.required)
+                        }" 
+                        minlength="2"
+                        maxlength="30"
+                        [(ngModel)]="address.number_house" 
+                        name="number_house" type="text" 
+                        placeholder="Nro de Casa"
+                        #number_house="ngModel" required>
+                
+                <div class="invalid-feedback" *ngIf="number_house.errors?.required">
+                    Este campo es requerido.
+                </div>
+        
+                <div class="invalid-feedback" *ngIf="number_house.errors?.minlength" >
+                    Este campo requiere al menos 2 caracteres.
+                </div>
+        
+                <div class="invalid-feedback" *ngIf="number_house.errors?.maxlength" >
+                  maximo 30 caracteres permitido.
+                </div>
+        
+            </div>
+          </div>
+        </div>
+
+        <div class="col text-center">
+            <button type="submit" class="btn btn-outline-primary btn-block" [disabled]="!dataForm.valid">
+              Guardar Direccion
+            </button>
+        </div>
+
+      </form>
+    </div>
+  </ng-template>
