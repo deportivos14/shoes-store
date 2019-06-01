@@ -1,3 +1,42 @@
-<button (click)="handlePayment()">
-  Add Credits to your Account
-</button> 
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+          <div class="card-header">
+              <div class="float-left">
+                  <h3>Proceder con el pago</h3>
+              </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-8">
+                <div class="card border-success mb-3">
+                  <div class="card-header bg-transparent border-success">Datos del cliente</div>
+                  <div class="card-body text-success">
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check"></i> Android v4.4.2 (KitKat)</li>
+                        <li><i class="fas fa-check"></i> 13 MP,Autofocus, LED flash</li>
+                    </ul>
+                  </div>
+                  <div class="card-footer bg-transparent border-success">Footer</div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="card border-primary mb-3">
+                  <div class="card-header bg-transparent border-primary">Datos de la venta</div>
+                  <div class="card-body text-success">
+                    <h5 class="card-title">Success card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  </div>
+                  <div class="card-footer bg-transparent border-primary">
+                    <button (click)="handlePayment()" class="btn btn-outline-warning btn-block">Realizar Pago</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    </div>
+</div>

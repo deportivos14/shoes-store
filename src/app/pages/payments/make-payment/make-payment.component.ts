@@ -12,7 +12,7 @@ declare var StripeCheckout:any;
 export class MakePaymentComponent implements OnInit {
 
   handler: any;
-  amount = 500;
+  amount = 100;
 
   constructor(private paymentServ: PaymentService ) { }
 
