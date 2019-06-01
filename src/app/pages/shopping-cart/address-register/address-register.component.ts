@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from '../../../models/Address';
+import { AddressService } from '../../../services/address.service';
+import { initialState } from '../../../shopping_cart.reducer';
 
 @Component({
   selector: 'app-address-register',
@@ -10,7 +12,7 @@ import { Address } from '../../../models/Address';
 export class AddressRegisterComponent implements OnInit {
 
   closeResult: string;
-
+  addresses: Array<Object> = [];
   address:Address = {
     id: null,
     user_id: null,
@@ -23,11 +25,14 @@ export class AddressRegisterComponent implements OnInit {
     street_address: null,
     country: null,
     number_house: null,
-  }
+  };
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private addressServ: AddressService) { }
 
   ngOnInit() {
+    let datos = [];
+    this.addressServ.getAddressess().subscribe( res => this.mappingData(res, datos) );
+    this.addresses = datos;
   }
 
   open(content) {
@@ -49,8 +54,38 @@ export class AddressRegisterComponent implements OnInit {
   }
 
   onSaveAndClose() {
-    console.log(this.address);
-    this.modalService.dismissAll();
+    this.addressServ.createAddress( this.address )
+      .then( 
+        res => { this.modalService.dismissAll(); this.address = this.initState() }
+      );
+  }
+
+  mappingData( data, res ) {
+    data.forEach( ( doc ) => {
+      let product = doc.data();
+      product.id = doc.id;
+      product.image = doc.id;
+      res.push(product);
+    });
+
+    return res;
+  }
+
+  initState() {
+    this.address = {
+        id: null,
+        user_id: null,
+        pin_code: null,
+        nro_mobile: null,
+        first_name: null,
+        last_name: null,
+        locaty_town: null,
+        city_district: null,
+        street_address: null,
+        country: null,
+        number_house: null,
+    }
+    return this.address;
   }
 
 }

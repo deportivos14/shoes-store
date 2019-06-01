@@ -10,6 +10,9 @@ import { CreateStoreComponent } from "./store/create-store/create-store.componen
 import { ShoppingCartComponent } from "./shopping-cart/shopping-cart.component";
 import { AddressRegisterComponent } from './shopping-cart/address-register/address-register.component';
 
+import { PaymentsComponent } from './payments/payments.component';
+import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
+
 const routes: Routes = [
   { path: 'products/list', component: ListProductComponent },
   { path: 'products/create', component: CreateProductComponent },
@@ -17,6 +20,8 @@ const routes: Routes = [
   { path: 'shops/create', component: CreateStoreComponent },
   { path: 'shopping_cart', component: ShoppingCartComponent },
   { path: 'shopping_cart/address_register', component: AddressRegisterComponent },
+  { path: 'payment', component: PaymentsComponent },
+  { path: 'payments/make_payment', component: MakePaymentComponent },
 ];
 
 @NgModule({

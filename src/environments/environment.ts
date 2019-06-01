@@ -12,7 +12,8 @@ export const environment = {
     storageBucket: 'shoes-store-edd84.appspot.com',
     messagingSenderId: '425819031764',
     appId: '1:425819031764:web:f733e5edb2cd4c9e'
-  }
+  },
+  stripeKey: 'pk_test_WdIBoJadHNZGwqWnuFsP5LKu003JwrFPH1',
 };
 export const test = {
   production: false,

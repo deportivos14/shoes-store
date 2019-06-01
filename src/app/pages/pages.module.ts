@@ -15,6 +15,8 @@ import { ListProductComponent } from './products/list-product/list-product.compo
 import { CreateProductComponent } from './products/create-product/create-product.component';
 
 import { StoreService } from './../services/store.service';
+import { AddressService } from './../services/address.service';
+import { PaymentService } from './../services/payment.service';
 
 //shops
 import { CreateStoreComponent } from "./store/create-store/create-store.component";
@@ -23,6 +25,8 @@ import { ListStoreComponent } from './store/list-store/list-store.component';
 //cart
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AddressRegisterComponent } from './shopping-cart/address-register/address-register.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { MakePaymentComponent } from './payments/make-payment/make-payment.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,9 @@ import { AddressRegisterComponent } from './shopping-cart/address-register/addre
     ShoppingCartComponentItem,
     NgDropFilesDirective,
     ShoppingCartComponent,
-    AddressRegisterComponent
+    AddressRegisterComponent,
+    PaymentsComponent,
+    MakePaymentComponent
   ],
   imports: [
     CommonModule, 
@@ -44,6 +50,6 @@ import { AddressRegisterComponent } from './shopping-cart/address-register/addre
     ReactiveFormsModule,
     NgMultiSelectDropDownModule.forRoot()
   ],
-  providers: [ProductService, StoreService]
+  providers: [ProductService, StoreService, AddressService, PaymentService]
 })
 export class PagesModule {}
