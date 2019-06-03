@@ -3,7 +3,8 @@ import { Product } from "../../models/product";
 import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Store, select } from '@ngrx/store';
-import { IncrementProduct, DecrementProduct } from 'src/app/shopping_cart.actions';
+import { IncrementProduct, DecrementProduct } from 'src/app/actions/shopping_cart.actions';
+import { MountIncrement, MountDecrement } from 'src/app/actions/mount_cart.actions';
 
 @Component({
   selector: 'app-product-card',
@@ -22,10 +23,9 @@ export class AppProductCardComponent implements OnInit {
 
   //@Output() productSelected: EventEmitter<number>;
 
-  constructor(private storage: AngularFireStorage, private storeProduct: Store<{ shopping: number }>) { 
+  constructor(private storage: AngularFireStorage, private storeProduct: Store<{ shopping: number }>, private cartProduct: Store<{ mount: number }>) { 
     this.shopping_cart = storeProduct.pipe( select('shopping_cart'));
     this.shopping_cart.subscribe( (res: Product[]) => this.countProducts = res.length )
-    //console.log("mis datos", this.shopping_cart)
   }
 
   async ngOnInit() {
@@ -37,9 +37,11 @@ export class AppProductCardComponent implements OnInit {
     if (this.flag_shopping_cart) {
       this.flag_shopping_cart = !this.flag_shopping_cart;
       this.storeProduct.dispatch( new DecrementProduct( this.product ) );
+      this.cartProduct.dispatch( new MountDecrement( this.product ) );
     } else {
       this.flag_shopping_cart = !this.flag_shopping_cart;
       this.storeProduct.dispatch( new IncrementProduct( this.product ) );
+      this.cartProduct.dispatch( new MountIncrement( this.product ) );
     }
   }
 

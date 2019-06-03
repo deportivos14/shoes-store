@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { Product } from './models/product';
+import { Product } from './../models/product';
 
 export enum ActionTypes {
   IncrementProduct = '[Shopping Component] IncrementProduct',

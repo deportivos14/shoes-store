@@ -16,7 +16,7 @@ export class PaymentService {
     });
   }
 
-  processPayment(token: any, amount: number) {
+  processPayment(token: any, amount: any) {
     const payment = { token, amount }
     return this.db.collection(this.COLLECTION).add( payment );
     //return this.db.list(`/payments/${this.userId}`).push(payment)

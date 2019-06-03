@@ -13,7 +13,8 @@ import { LayoutModule } from './layout/layout.module';
 import { environment } from '../environments/environment';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { shoppingReducer } from './shopping_cart.reducer';
+import { shoppingReducer } from './reducers/shopping_cart.reducer';
+import { mountCartReducer } from './reducers/mount_cart.reducer';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -30,12 +31,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    StoreModule.forRoot( { shopping_cart: shoppingReducer } ),
+    StoreModule.forRoot( { shopping_cart: shoppingReducer, mount_cart: mountCartReducer } ),
     StoreDevtoolsModule.instrument( {
       maxAge: 25,
       logOnly: environment.production
     } )
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule {}

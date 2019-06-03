@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ActionTypes, ProductAction } from './shopping_cart.actions';
+import { ActionTypes, ProductAction } from './../actions/shopping_cart.actions';
 
 export const initialState = [];
 
@@ -14,7 +14,6 @@ export function shoppingReducer(state = initialState, action: ProductAction) {
         
         case ActionTypes.DecrementProduct:
             return state.filter( (item, index) => {
-                console.log(item)
                 if (item.id === product.id) {
                     return false
                 }

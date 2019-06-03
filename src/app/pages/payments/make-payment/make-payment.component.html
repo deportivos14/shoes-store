@@ -11,23 +11,36 @@
             <div class="row">
               <div class="col-md-8">
                 <div class="card border-success mb-3">
-                  <div class="card-header bg-transparent border-success">Datos del cliente</div>
+                  <div class="card-header bg-transparent border-success text-center"><h5>Datos del cliente</h5></div>
                   <div class="card-body text-success">
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <p class="card-text text-danger">Nota :: Los datos que se muestran a continuacion son los datos de la direccion de envio.</p>
                     <ul class="list-unstyled">
-                        <li><i class="fas fa-check"></i> Android v4.4.2 (KitKat)</li>
-                        <li><i class="fas fa-check"></i> 13 MP,Autofocus, LED flash</li>
+                        <li class="text-danger"><i class="fas fa-check"></i><b> Nombre Completo : </b> 
+                          <span class="custom-data text-dark">{{ address?.first_name }} {{ address?.last_name }}</span>
+                        </li>
+                        <li class="text-danger"><i class="fas fa-check"></i><b> Telefono/Celular : </b> 
+                          <span class="custom-data text-dark">{{ address?.nro_mobile }}</span>
+                        </li>
+                        <li class="text-danger"><i class="fas fa-check"></i><b> Localidad : </b>
+                          <span class="custom-data text-dark">{{ address?.locaty_town }}</span>
+                        </li>
+                        <li class="text-danger"><i class="fas fa-check"></i><b> Direccion : </b>
+                          <span class="custom-data text-dark">{{ address?.street_address }}</span>
+                        </li>
+                        <li class="text-danger"><i class="fas fa-check"></i><b> Numero de casa : </b>
+                          <span class="custom-data text-dark">{{ address?.number_house }}</span>
+                        </li>
                     </ul>
                   </div>
-                  <div class="card-footer bg-transparent border-success">Footer</div>
+                  <div class="card-footer bg-transparent border-success">SI los datos de la direccion son correctas proceda a la realizacion de la cancelacion de la compra</div>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="card border-primary mb-3">
-                  <div class="card-header bg-transparent border-primary">Datos de la venta</div>
+                  <div class="card-header bg-transparent border-primary text-center text-danger">DATOS DE LA VENTA</div>
                   <div class="card-body text-success">
-                    <h5 class="card-title">Success card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h5 class="card-title">TOTAL :: {{ mount_cart | async }} BS</h5>
+                    <p class="card-text">Los precios mostrados son precios de descuento de todos los productos que se agrego a carrito</p>
                   </div>
                   <div class="card-footer bg-transparent border-primary">
                     <button (click)="handlePayment()" class="btn btn-outline-warning btn-block">Realizar Pago</button>

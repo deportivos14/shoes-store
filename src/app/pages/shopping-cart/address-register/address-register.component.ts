@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { Address } from '../../../models/Address';
 import { AddressService } from '../../../services/address.service';
-import { initialState } from '../../../shopping_cart.reducer';
+import { initialState } from './../../../reducers/shopping_cart.reducer';
 
 @Component({
   selector: 'app-address-register',

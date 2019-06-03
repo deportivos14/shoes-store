@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'shopping_cart', component: ShoppingCartComponent },
   { path: 'shopping_cart/address_register', component: AddressRegisterComponent },
   { path: 'payment', component: PaymentsComponent },
-  { path: 'payments/make_payment', component: MakePaymentComponent },
+  { path: 'payments/make_payment/:id', component: MakePaymentComponent },
 ];
 
 @NgModule({

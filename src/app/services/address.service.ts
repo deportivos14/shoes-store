@@ -18,4 +18,9 @@ export class AddressService {
   getAddressess() {
     return this.db.collection(this.COLLECTION).get();
   }
+
+  getAddress( id:string ) {
+    //return this.db.collection(this.COLLECTION).doc(id).get();
+    return this.db.collection(this.COLLECTION).doc(id).valueChanges();
+  }
 }

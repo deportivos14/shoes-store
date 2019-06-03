@@ -12,12 +12,11 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class ShoppingCartComponent implements OnInit {
 
   shopping_cart: Observable<Object>;
+  mount_cart: Observable<Number>;
   
-  constructor(private storage: AngularFireStorage, private storeProduct: Store<{ shopping_cart: Array<Product[]> }>) { 
+  constructor(private storage: AngularFireStorage, private storeProduct: Store<{ shopping_cart: Array<Product[]> }>, private storeCart: Store<{ mount_cart: Number }>) { 
     this.shopping_cart = storeProduct.pipe( select('shopping_cart'));
-    this.shopping_cart.subscribe( res => {
-      console.log(res);
-    })
+    this.mount_cart = storeCart.pipe( select('mount_cart') );
   }
 
   ngOnInit() {
@@ -25,7 +24,6 @@ export class ShoppingCartComponent implements OnInit {
 
   getUrl( name: string ){
     const ref = this.storage.ref(`img/${ name }`);
-    console.log("url del producto", ref.getDownloadURL());
     return ref.getDownloadURL();
   }
 

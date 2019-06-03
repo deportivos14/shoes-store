@@ -25,14 +25,12 @@
               </thead>
               <tbody>
                 <tr *ngFor="let addre of addresses; let i = index">
-                  <th>{{ i+1 }}</th>
+                  <th>{{ i + 1 }}</th>
                   <th>{{ addre.first_name }}</th>
                   <td>{{ addre.last_name }}</td>
                   <td>{{ addre.nro_mobile }}</td>
                   <td>
-                    <a class="btn btn-outline-warning" href="">Editar</a>
-                    <a class="btn btn-outline-danger" href="">Eliminar</a>
-                    <a class="btn btn-outline-success" routerLink="/payments/make_payment">Enviar aqui</a>
+                    <a class="btn btn-outline-success" [routerLink]="['/payments/make_payment', addre.id]" >Enviar aqui</a>
                     <div id="paypal-checkout-btn"></div>
                   </td>
                 </tr>
